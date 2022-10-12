@@ -30,7 +30,13 @@ function toggleSidebar(){
 <div class="wrapper">
 
 	<div id="content">
-		<div id="contentTopbar"><div id="toggleSidebar" on:click={() => (sideBar = !sideBar)}></div></div>
+		<div id="contentTopbar">
+			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)}  class={sideBar ? "openedSidebar" : ""}>
+				<div id="plusAround"></div>
+				<div id="plusMiddle"></div>
+				<div id="plusAround"></div>
+			</div>
+		</div>
 		<button style="{cssVarStyles}">{text}</button>
 		<div id="contentBottombar"></div>
 	</div>
@@ -151,6 +157,28 @@ button{
 	width:40px;
 	background: #fff;
 	border: 0px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#plusAround{
+	background: black;
+	height:6px;
+	width:2px;
+	transition: ease 0.5s;
+	transition-delay: 0.5s;
+}
+
+.openedSidebar > #plusAround{
+	height: 0px;
+}
+
+#plusMiddle{
+	height: 2px;
+	width: 14px;
+	background: black;
 }
 
 #sidebar{
