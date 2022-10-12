@@ -1,16 +1,18 @@
 <script>
 	import './styles.css';
+	let innerWidth;
+	let innerHeight;
 </script>
 
-<main>
+<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight}/>
+
+<main style='height: {innerHeight}; width: {innerWidth}'>
 		<slot />
 </main>
 
 
 <style>
 main, main > *{
-	height: 100vh;
-	width: 100vw;
 	display: flex;
 	justify-content: stretch;
 	align-items: stretch;
