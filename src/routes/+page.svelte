@@ -15,8 +15,10 @@
 <style>
 	.wrapper{
 		width: 100vw;
+		height: -webkit-fill-available;
 		display: flex;
 		flex-direction: row;
+		align-items: stretch;
 	}
 	#content{
 		flex-grow: 1;
