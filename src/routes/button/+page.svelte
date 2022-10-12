@@ -5,17 +5,17 @@ let text = '';
 let sideBar = false;
 
 let styles = {
-	height: '100',
-	width: '100',
-	radius: '0',
-	bezel: '0',
-	furrow: '0',
-	bump: '2px 2px 4px rgba(255,255,255,0.25)',
+	height: '80',
+	width: '200',
+	radius: '50',
+	bezel: '5',
+	furrow: '3',
+	bump: '5px 5px 10px rgba(255,255,255,0.25)',
 	maxRadius: '0',
-	color: '#ffffff',
+	color: '#8cffd4',
 	size: '10',
 	blur: '20',
-	surface: 'linear-gradient(rgba(0,0,0,0) 0 0) content-box',
+	surface: 'linear-gradient(325deg, rgba(255,255,255,0.08), rgba(0,0,0,0.1)) content-box',
 }
 
 $: cssVarStyles = Object.entries(styles)
@@ -83,16 +83,16 @@ $: cssVarStyles = Object.entries(styles)
 
 		<fieldset>
 		<div class="radioWrapper">
-			<input type="radio" name="surface" bind:group={styles['surface']} value={'linear-gradient(rgba(0,0,0,0) 0 0) content-box'} checked>
-			<label class="radioLabel" for="flat">flat</label>
+			<input type="radio" name="surface" bind:group={styles['surface']} value={'linear-gradient(325deg, rgba(255,255,255,0.08), rgba(0,0,0,0.1)) content-box'} checked>
+			<label class="radioLabel" for="concav">concav</label>
 		</div>
 		<div class="radioWrapper">
 			<input type="radio" name="surface" bind:group={styles['surface']} value={'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(0,0,0,0.1)) content-box'}>
 			<label class="radioLabel" for="convex">convex</label>
 		</div>
 		<div class="radioWrapper">
-			<input type="radio" name="surface" bind:group={styles['surface']} value={'linear-gradient(325deg, rgba(255,255,255,0.08), rgba(0,0,0,0.1)) content-box'}>
-			<label class="radioLabel" for="concav">concav</label>
+			<input type="radio" name="surface" bind:group={styles['surface']} value={'linear-gradient(rgba(0,0,0,0) 0 0) content-box'}>
+			<label class="radioLabel" for="flat">flat</label>
 		</div>
 		</fieldset>
 	</div>
