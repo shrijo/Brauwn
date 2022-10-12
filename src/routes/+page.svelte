@@ -14,7 +14,6 @@
 
 <style>
 	.wrapper{
-		height: 100%;
 		width: 100vw;
 		display: flex;
 		flex-direction: row;
@@ -22,7 +21,6 @@
 	#content{
 		flex-grow: 1;
 		display: flex;
-		height: 100%;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
