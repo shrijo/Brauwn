@@ -1,9 +1,9 @@
 <script>
-
+	import { fly } from  'svelte/transition'
 </script>
 
 
-<div class="wrapper">
+<div in:fly={{x: -200, duration: 500, delay: 500}} out:fly={{x: -200, duration: 500}} class="wrapper">
 	<div id="content">
 		<a href="/button">button</a>
 	</div>
@@ -20,7 +20,6 @@
 		flex-grow: 1;
 		display: flex;
 		height: 100vh;
-		background-color: #efefef;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;

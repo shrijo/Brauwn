@@ -1,4 +1,5 @@
 <script>
+import {fly} from 'svelte/transition'
 
 let text = '';
 let sideBar = false;
@@ -27,11 +28,11 @@ function toggleSidebar(){
 
 </script>
 
-<div class="wrapper">
+<div in:fly={{x: 200, duration: 500, delay: 500}} out:fly={{x: 200, duration: 500}} class="wrapper">
 
 	<div id="content">
 		<div id="contentTopbar">
-			<a href="/" id="backButton">back</a>
+			<a href="/" id="backButton">⇧</a>
 			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)}></div>
 		</div>
 		<button style="{cssVarStyles}">{text}</button>
@@ -129,12 +130,12 @@ button{
 	display: flex;
 	flex-direction: row;
 }
+
 #content{
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
-	background-color: #efefef;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -158,6 +159,7 @@ button{
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	transform: rotate(-90deg);
 }
 
 #toggleSidebar{
