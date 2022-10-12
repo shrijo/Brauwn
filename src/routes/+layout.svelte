@@ -8,14 +8,13 @@
 
 
 <style>
-main{
+main, main > *{
 	height: 100vh;
 	width: 100vw;
+	display: flex;
+	justify-content: stretch;
+	align-items: stretch;
 }
 
-main > *{
-	width: 100vw;
-	height: 100vh;
-}
 
 </style>
