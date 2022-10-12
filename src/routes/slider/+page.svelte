@@ -10,7 +10,7 @@ let sideBar = false;
 
 	<div id="content">
 		<div id="contentTopbar">
-			<a href="/" id="backButton">⇧</a>
+			<a href="/" id="backButton">➡</a>
 			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)} class={sideBar ? 'sidebarOpened' : ''}>
 				<div class="plusAround"></div>
 				<div class="plusMiddle"></div>
@@ -71,7 +71,7 @@ let sideBar = false;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	transform: rotate(-90deg);
+	transform: rotate(-180deg);
 }
 
 #toggleSidebar{

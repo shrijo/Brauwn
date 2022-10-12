@@ -11,14 +11,14 @@ let sideBar = false;
 
 	<div id="content">
 		<div id="contentTopbar">
-			<a href="/" id="backButton">⇧</a>
+			<a href="/" id="backButton">➡</a>
 			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)} class={sideBar ? 'sidebarOpened' : ''}>
 				<div class="plusAround"></div>
 				<div class="plusMiddle"></div>
 				<div class="plusAround"></div>
 			</div>
 		</div>
-		<p>{text}</p>
+		<div class="display"></div>
 		<div id="contentBottombar"></div>
 	</div>
 
@@ -36,6 +36,19 @@ let sideBar = false;
 
 
 <style>
+
+.display{
+	width: 300px;
+	height: 250px;
+	padding: 10px;
+	border: 0px solid rgba(0,0,0,0);
+	border-radius: 50px;
+	background:
+		linear-gradient(135deg, rgba(255,255,255,0.01), rgba(255,255,255,0.15) 20%, rgba(255,255,255,0) 40%) content-box,
+		linear-gradient(135deg, rgba(255,255,255,0.08), rgba(0,0,0,0.15)) padding-box,
+		linear-gradient(#000 0 0) padding-box,
+		radial-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.25)) border-box;
+}
 
 .wrapper{
 	height: 100vh;
@@ -72,7 +85,7 @@ let sideBar = false;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	transform: rotate(-90deg);
+	transform: rotate(-180deg);
 }
 
 #toggleSidebar{
