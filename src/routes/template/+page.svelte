@@ -38,8 +38,7 @@ let sideBar = false;
 <style>
 
 .wrapper{
-	height: 100vh;
-	width: 100vw;
+	min-width: 100vw;
 	display: flex;
 	flex-direction: row;
 }

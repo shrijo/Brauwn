@@ -125,7 +125,7 @@ button{
 }
 
 .wrapper{
-	width: 100vw;
+	min-width: 100vw;
 	display: flex;
 	flex-direction: row;
 }
