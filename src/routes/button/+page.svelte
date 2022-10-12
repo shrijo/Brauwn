@@ -195,7 +195,6 @@ button{
 
 #sidebar{
 	padding: 20px 20px;
-	height: 100vh;
 	width: 300px;
 	background-color: #fff;
 	display: flex;

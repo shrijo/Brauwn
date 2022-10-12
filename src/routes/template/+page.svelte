@@ -38,16 +38,17 @@ let sideBar = false;
 <style>
 
 .wrapper{
-	min-width: 100vw;
+	width: 100vw;
+	height: -webkit-fill-available;
 	display: flex;
 	flex-direction: row;
+	align-items: stretch;
 }
 
 #content{
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -107,7 +108,6 @@ let sideBar = false;
 
 #sidebar{
 	padding: 20px 20px;
-	height: 100vh;
 	width: 300px;
 	background-color: #fff;
 	display: flex;
