@@ -30,7 +30,10 @@ function toggleSidebar(){
 <div class="wrapper">
 
 	<div id="content">
-		<div id="contentTopbar"><div id="toggleSidebar" on:click={() => (sideBar = !sideBar)}></div></div>
+		<div id="contentTopbar">
+			<a href="/" id="backButton">back</a>
+			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)}></div>
+		</div>
 		<button style="{cssVarStyles}">{text}</button>
 		<div id="contentBottombar"></div>
 	</div>
@@ -138,10 +141,23 @@ button{
 
 #contentTopbar, #contentBottombar{
 	display: flex;
-	flex-direction: row-reverse;
+	flex-direction: row;
+	justify-content: space-between;
 	height: 40px;
 	margin: 10px;
 	width: calc(100% - 20px);
+}
+
+#backButton{
+	text-decoration: none;
+	background: white;
+	color: black;
+	height: 40px;
+	min-width: 40px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 #toggleSidebar{
