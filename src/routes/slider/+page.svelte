@@ -17,7 +17,7 @@ let sideBar = false;
 				<div class="plusAround"></div>
 			</div>
 		</div>
-		<p>{text}</p>
+		<input type="range">
 		<div id="contentBottombar"></div>
 	</div>
 
