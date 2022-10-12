@@ -2,9 +2,8 @@
 import {fly} from 'svelte/transition'
 
 let text = '';
+let sideBar = false;
 
-let styles = {
-}
 
 </script>
 
