@@ -22,10 +22,6 @@ $: cssVarStyles = Object.entries(styles)
 		.map(([key, value]) => `--${key}:${value}`)
 		.join(';');
 
-function toggleSidebar(){
-	alert('hello')
-}
-
 </script>
 
 <div in:fly={{x: 200, duration: 500, delay: 500}} out:fly={{x: 200, duration: 500}} class="wrapper">
