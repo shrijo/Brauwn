@@ -24,7 +24,6 @@ border-left: {furrow}px solid rgba(255,255,255,0.2);'>
 
 <style>
   .row, .column{
-    border: 0px inset white;
     flex-grow: 1;
     display: flex;
     align-self: stretch;
