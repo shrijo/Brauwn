@@ -5,7 +5,7 @@
   export let furrow;
 </script>
 
-<fieldset class={isRow ? 'row' : 'column'} id={editMode ? 'editable' : ''} style='
+<fieldset class='{isRow ? 'row' : 'column'} {children > 0 ? 'flatten' : 'normal'}' id={editMode ? 'editable' : ''} style='
 border-bottom: {furrow}px inset rgba(0,0,0,0.2);
 border-right: {furrow}px inset rgba(0,0,0,0.2);
 border-top: {furrow}px solid rgba(255,255,255,0.2);
@@ -30,6 +30,10 @@ border-left: {furrow}px solid rgba(255,255,255,0.2);'>
     margin: 0;
     padding: 0;
     transition: 0.5s ease;
+  }
+
+  .flatten{
+    border: none !important;
   }
 
   legend{
