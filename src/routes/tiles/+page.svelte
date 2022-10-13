@@ -38,7 +38,9 @@ let sideBar = false;
 <style>
 
 .wrapper{
+	height: 100vh;
 	height: -webkit-fill-available;
+	height: fill-available;
 	width: 100vw;
 	display: flex;
 	flex-direction: row;

@@ -126,6 +126,7 @@ button{
 
 .wrapper{
 	min-width: 100vw;
+	height: 100vh;
 	height: -webkit-fill-available;
 	display: flex;
 	flex-direction: row;
