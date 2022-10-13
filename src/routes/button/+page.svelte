@@ -28,7 +28,7 @@ $: cssVarStyles = Object.entries(styles)
 
 	<div id="content">
 		<div id="contentTopbar">
-			<a href="/" id="backButton">➡</a>
+			<a href="/" id="backButton">⮕</a>
 			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)} class={sideBar ? 'sidebarOpened' : ''}>
 				<div class="plusAround"></div>
 				<div class="plusMiddle"></div>
