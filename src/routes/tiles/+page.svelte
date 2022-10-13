@@ -1,8 +1,11 @@
 <script>
 import {fly} from 'svelte/transition'
+import Tile from '$lib/components/tile.svelte'
 
 let text = '';
 let sideBar = false;
+let editMode = false;
+let furrow = 0;
 
 
 </script>
@@ -18,7 +21,7 @@ let sideBar = false;
 				<div class="plusAround"></div>
 			</div>
 		</div>
-		<p>{text}</p>
+		<Tile editMode={editMode} furrow={furrow}/>
 		<div id="contentBottombar"></div>
 	</div>
 
@@ -26,10 +29,18 @@ let sideBar = false;
 		<h2>Button</h2>
 
 		<fieldset>
-		<label>text</label>
-		<input type="text" bind:value={text}/>
+		<div class="checkboxWrapper">
+			<input type="checkbox" name="editMode" bind:checked={editMode} >
+			<label class="checkboxLabel" for="editMode">Edit Mode</label>
+		</div>
 		</fieldset>
 
+		<fieldset>
+			<label>Furrow</label>
+			<input type="range" min="0" max="5" bind:value={furrow}>
+		</fieldset>
+		
+		{editMode}
 	</div>
 
 </div>
