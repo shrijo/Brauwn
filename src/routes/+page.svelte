@@ -18,6 +18,8 @@
 		width: 100vw;
 		height: 100vh;
 		height: -webkit-fill-available;
+		height: fill-available;
+		height: -moz-fill-available;
 		display: flex;
 		flex-direction: row;
 		align-items: stretch;
