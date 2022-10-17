@@ -18,7 +18,7 @@
 
 <div in:fly={{x: 200, duration: 500, delay: 500}} out:fly={{x: 200, duration: 500}} class="wrapper">
 
-	<div id="content">
+	<div id="content"  bind:clientWidth={canvasWidth} bind:clientHeight={canvasHeight}>
 		<div id="contentTopbar">
 			<a href="/" id="backButton">⮕</a>
 			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)} class={sideBar ? 'sidebarOpened' : ''}>
@@ -27,7 +27,7 @@
 				<div class="plusAround"></div>
 			</div>
 		</div>
-    <div class="canvasWrapper" bind:clientWidth={canvasWidth} bind:clientHeight={canvasHeight}>
+    <div class="canvasWrapper">
 		<SC.Canvas antialias alpha height={canvasHeight} width={canvasWidth}>
       <SC.Mesh 
       geometry={new THREE.BoxGeometry()} 
