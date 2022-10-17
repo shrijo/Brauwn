@@ -31,7 +31,7 @@
 		</div>
     <div class="canvasWrapper">
 
-		<SC.Canvas antialias alpha>
+		<SC.Canvas antialias alpha height={canvasHeight} width={canvasWidth}>
 			{#if modelType == 'gltf'}
 			<Model width={width} height={height} depth= {depth}/>
 			{:else if modelType == 'box'}
@@ -57,7 +57,7 @@
 	</div>
 
 	<div id="sidebar" class="{sideBar ? 'shown' : 'hidden'}">
-		<h2>Button</h2>
+		<h2>3D</h2>
 
 		<fieldset>
 		<label>Color</label>
