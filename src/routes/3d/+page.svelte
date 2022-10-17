@@ -3,8 +3,12 @@
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
 
-  let text = '';
   let sideBar = false;
+
+  let color = '00ff00';
+  let height = '1';
+  let width = '1';
+  let depth = '1';
 
 </script>
 
@@ -20,9 +24,15 @@
 				<div class="plusAround"></div>
 			</div>
 		</div>
-		<SC.Canvas>
-      <SC.Mesh geometry={new THREE.BoxGeometry()} />
+		<SC.Canvas antialias alpha >
+      <SC.Mesh 
+      geometry={new THREE.BoxGeometry()} 
+      material={new THREE.MeshStandardMaterial({ color: color })}
+      scale={[width, height, depth]}/> 
       <SC.PerspectiveCamera position={[1, 1, 3]} />
+      <SC.OrbitControls enableZoom={false} />
+      <SC.AmbientLight intensity={0.6} />
++	    <SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
     </SC.Canvas>
 		<div id="contentBottombar"></div>
 	</div>
@@ -31,9 +41,25 @@
 		<h2>Button</h2>
 
 		<fieldset>
-		<label>text</label>
-		<input type="text" bind:value={text}/>
+		<label>Color</label>
+		<input type="color" bind:value={color}/>
 		</fieldset>
+
+    <fieldset>
+		<label>Width {width}</label>
+		<input type="range" min="0" max="2" step="0.01" bind:value={width}/>
+		</fieldset>
+
+    <fieldset>
+		<label>Height {height}</label>
+		<input type="range" min="0" max="2" step="0.01" bind:value={height}/>
+		</fieldset>
+
+    <fieldset>
+		<label>Depth {depth}</label>
+		<input type="range" min="0" max="2" step="0.01" bind:value={depth}/>
+		</fieldset>
+
 
 	</div>
 
@@ -120,6 +146,7 @@
 	display: flex;
 	flex-direction: column;
 	transition: 0.2s ease;
+  z-index: 1000;
 }
 
 .hidden{
