@@ -9,6 +9,7 @@
 		<a href="/slider">slider</a>
 		<a href="/display">display</a>
 		<a href="/tiles">tiles</a>
+		<a href="/3d">3D</a>
 	</div>
 </div>
 
