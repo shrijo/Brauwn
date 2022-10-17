@@ -5,7 +5,10 @@
 
   let sideBar = false;
 
-  let color = '00ff00';
+  let canvasWidth;
+  let canvasHeight;
+
+  let color = '0x00ff00';
   let height = '1';
   let width = '1';
   let depth = '1';
@@ -24,7 +27,8 @@
 				<div class="plusAround"></div>
 			</div>
 		</div>
-		<SC.Canvas antialias alpha >
+    <div class="canvasWrapper" bind:clientWidth={canvasWidth} bind:clientHeight={canvasHeight}>
+		<SC.Canvas antialias alpha height={canvasHeight} width={canvasWidth}>
       <SC.Mesh 
       geometry={new THREE.BoxGeometry()} 
       material={new THREE.MeshStandardMaterial({ color: color })}
@@ -32,8 +36,9 @@
       <SC.PerspectiveCamera position={[1, 1, 3]} />
       <SC.OrbitControls enableZoom={false} />
       <SC.AmbientLight intensity={0.6} />
-+	    <SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
+	    <SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
     </SC.Canvas>
+    </div>
 		<div id="contentBottombar"></div>
 	</div>
 
@@ -67,6 +72,11 @@
 
 
 <style>
+
+.canvasWrapper{
+  height: 100%;
+  width: 100%;
+}
 
 .wrapper{
 	width: 100vw;
