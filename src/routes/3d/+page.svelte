@@ -5,6 +5,7 @@
   import Model from '$lib/components/model.svelte'
 
   let sideBar = false;
+	let modelType = 'box';
 
   let canvasWidth;
   let canvasHeight;
@@ -29,13 +30,28 @@
 			</div>
 		</div>
     <div class="canvasWrapper">
+
+		<SC.Canvas antialias alpha>
+			{#if modelType == 'gltf'}
+			<Model width={width} height={height} depth= {depth}/>
+			{:else if modelType == 'box'}
+			<SC.Mesh
+				geometry={new THREE.BoxGeometry()}
+				material={new THREE.MeshStandardMaterial({ color: 0xff3e00 })}
+			/>
+			{/if}
+			<SC.PerspectiveCamera position={[1, 1, 3]} />
+			<SC.OrbitControls enableZoom={false} />
+			<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
+		​</SC.Canvas>
+<!--
 		<SC.Canvas antialias alpha height={canvasHeight} width={canvasWidth}>
       <Model width={width} height={height} depth= {depth}/>
       <SC.PerspectiveCamera position={[1, 1, 3]} />
       <SC.OrbitControls enableZoom={false} />
       <SC.AmbientLight intensity={0.6} />
 	    <SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
-    </SC.Canvas>
+    </SC.Canvas> -->
     </div>
 		<div id="contentBottombar"></div>
 	</div>
@@ -63,6 +79,13 @@
 		<input type="range" min="0" max="2" step="0.01" bind:value={depth}/>
 		</fieldset>
 
+		<fieldset>
+		<label for="models">Choose a model</label>
+		<select id="models" name="models" bind:value={modelType}>
+			<option value="box">Cube</option>
+			<option value="gltf">GLTF</option>
+		</select> 
+		</fieldset>
 
 	</div>
 
