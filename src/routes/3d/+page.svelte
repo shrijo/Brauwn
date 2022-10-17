@@ -2,6 +2,7 @@
   import {fly} from 'svelte/transition'
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
+  import Model from '$lib/components/model.svelte'
 
   let sideBar = false;
 
@@ -29,10 +30,7 @@
 		</div>
     <div class="canvasWrapper">
 		<SC.Canvas antialias alpha height={canvasHeight} width={canvasWidth}>
-      <SC.Mesh 
-      geometry={new THREE.BoxGeometry()} 
-      material={new THREE.MeshStandardMaterial({ color: color })}
-      scale={[width, height, depth]}/> 
+      <Model width={width} height={height} depth= {depth}/>
       <SC.PerspectiveCamera position={[1, 1, 3]} />
       <SC.OrbitControls enableZoom={false} />
       <SC.AmbientLight intensity={0.6} />
