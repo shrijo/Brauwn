@@ -1,26 +1,51 @@
 <script>
   import {fly} from 'svelte/transition'
-	import * as THREE from 'three';
-	import * as SC from 'svelte-cubed';
-  import Model from '$lib/components/model.svelte'
+	import { CircleBufferGeometry, TorusKnotGeometry, Mesh, MeshStandardMaterial, Float32BufferAttribute, Vector3, BufferGeometry, PointsMaterial, DoubleSide, Object3D, Points } from 'three'
+  import { DEG2RAD } from 'three/src/math/MathUtils'
+  import {
+    AmbientLight,
+    Canvas,
+    DirectionalLight,
+    Group,
+    HemisphereLight,
+    OrbitControls,
+		Object3DInstance,
+    PerspectiveCamera
+  } from '@threlte/core'
+  import { spring } from 'svelte/motion'
+
+  const scale = spring(1)
+
+ /* -- */
+const geometry = new TorusKnotGeometry(4, 1.3, 100, 16);
+const torusKnot = new Mesh(geometry);
+
+const sampler = new MeshSurfaceSampler(torusKnot).build();
+
+const vertices = [];
+const tempPosition = new Vector3();
+for (let i = 0; i < 15000; i ++) {
+  sampler.sample(tempPosition);
+  vertices.push(tempPosition.x, tempPosition.y, tempPosition.z);
+}
+
+const pointsGeometry = new BufferGeometry();
+pointsGeometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
+const pointsMaterial = new PointsMaterial({
+  color: 0xff61d5,
+  size: 0.03
+});
+const points = new Points(pointsGeometry, pointsMaterial);
+ /* -- */
 
   let sideBar = false;
-	let modelType = 'box';
-
-  let canvasWidth;
-  let canvasHeight;
-
-  let color = '0x00ff00';
-  let height = '1';
-  let width = '1';
-  let depth = '1';
 
 </script>
 
 
 <div in:fly={{x: 200, duration: 500, delay: 500}} out:fly={{x: 200, duration: 500}} class="wrapper">
 
-	<div id="content"  bind:clientWidth={canvasWidth} bind:clientHeight={canvasHeight}>
+	<div id="content">
 		<div id="contentTopbar">
 			<a href="/" id="backButton">⮕</a>
 			<div id="toggleSidebar" on:click={() => (sideBar = !sideBar)} class={sideBar ? 'sidebarOpened' : ''}>
@@ -30,28 +55,34 @@
 			</div>
 		</div>
     <div class="canvasWrapper">
+		  <Canvas>
+				<PerspectiveCamera position={{ x: 10, y: 10, z: 10 }} fov={24}>
+					<OrbitControls
+						maxPolarAngle={DEG2RAD * 80}
+						autoRotate={false}
+						enableZoom={false}
+						target={{ y: 0.5 }}
+					/>
+				</PerspectiveCamera>
 
-		<SC.Canvas antialias alpha height={canvasHeight} width={canvasWidth}>
-			{#if modelType == 'gltf'}
-			<Model width={width} height={height} depth= {depth}/>
-			{:else if modelType == 'box'}
-			<SC.Mesh
-				geometry={new THREE.BoxGeometry()}
-				material={new THREE.MeshStandardMaterial({ color: 0xff3e00 })}
-			/>
-			{/if}
-			<SC.PerspectiveCamera position={[1, 1, 3]} />
-			<SC.OrbitControls enableZoom={false} />
-			<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
-		​</SC.Canvas>
-<!--
-		<SC.Canvas antialias alpha height={canvasHeight} width={canvasWidth}>
-      <Model width={width} height={height} depth= {depth}/>
-      <SC.PerspectiveCamera position={[1, 1, 3]} />
-      <SC.OrbitControls enableZoom={false} />
-      <SC.AmbientLight intensity={0.6} />
-	    <SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
-    </SC.Canvas> -->
+				<DirectionalLight shadow position={{ x: 3, y: 10, z: 10 }} />
+				<DirectionalLight position={{ x: -3, y: 10, z: -10 }} intensity={0.2} />
+				<AmbientLight intensity={0.2} />
+
+					<Mesh
+						interactive
+						on:pointerenter={() => ($scale = 2)}
+						on:pointerleave={() => ($scale = 1)}
+						position={{ y: 0.5 }}
+						castShadow
+						geometry={new BoxBufferGeometry(1, 1, 1)}
+						material={new MeshStandardMaterial({ color: '#333333' })}
+					/>
+
+					<Object3DInstance {object} position={{ y: 1 }} />
+
+			</Canvas>
+			
     </div>
 		<div id="contentBottombar"></div>
 	</div>
@@ -61,27 +92,27 @@
 
 		<fieldset>
 		<label>Color</label>
-		<input type="color" bind:value={color}/>
+		<input type="color"/>
 		</fieldset>
 
     <fieldset>
-		<label>Width {width}</label>
-		<input type="range" min="0" max="2" step="0.01" bind:value={width}/>
+		<label>Width</label>
+		<input type="range" min="0" max="2" step="0.01" />
 		</fieldset>
 
     <fieldset>
-		<label>Height {height}</label>
-		<input type="range" min="0" max="2" step="0.01" bind:value={height}/>
+		<label>Height </label>
+		<input type="range" min="0" max="2" step="0.01" />
 		</fieldset>
 
     <fieldset>
-		<label>Depth {depth}</label>
-		<input type="range" min="0" max="2" step="0.01" bind:value={depth}/>
+		<label>Depth</label>
+		<input type="range" min="0" max="2" step="0.01"/>
 		</fieldset>
 
 		<fieldset>
 		<label for="models">Choose a model</label>
-		<select id="models" name="models" bind:value={modelType}>
+		<select id="models" name="models" >
 			<option value="box">Cube</option>
 			<option value="gltf">GLTF</option>
 		</select> 
