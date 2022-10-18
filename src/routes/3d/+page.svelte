@@ -1,7 +1,7 @@
 <script>
   import {fly} from 'svelte/transition'
 	import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
-	import { CircleBufferGeometry, TorusKnotGeometry, Mesh, MeshStandardMaterial, Float32BufferAttribute, Vector3, BufferGeometry, PointsMaterial, DoubleSide, Object3D, Points } from 'three'
+	import { CircleBufferGeometry, BoxGeometry, Mesh, MeshStandardMaterial, Float32BufferAttribute, Vector3, BufferGeometry, PointsMaterial, DoubleSide, Object3D, Points } from 'three'
   import { DEG2RAD } from 'three/src/math/MathUtils'
   import {
     AmbientLight,
@@ -18,14 +18,14 @@
   const scale = spring(1)
 
  /* -- */
-const geometry = new TorusKnotGeometry(4, 1.3, 100, 16);
+const geometry = new BoxGeometry(1, 1, 1);
 const torusKnot = new Mesh(geometry);
 
 const sampler = new MeshSurfaceSampler(torusKnot).build();
 
 const vertices = [];
 const tempPosition = new Vector3();
-for (let i = 0; i < 15000; i ++) {
+for (let i = 0; i < 1500; i ++) {
   sampler.sample(tempPosition);
   vertices.push(tempPosition.x, tempPosition.y, tempPosition.z);
 }
@@ -34,12 +34,12 @@ const pointsGeometry = new BufferGeometry();
 pointsGeometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
 const pointsMaterial = new PointsMaterial({
   color: 0xff61d5,
-  size: 0.03
+  size: 1
 });
 const points = new Points(pointsGeometry, pointsMaterial);
  /* -- */
 
-  let sideBar = false;
+let sideBar = false;
 
 </script>
 
@@ -70,17 +70,7 @@ const points = new Points(pointsGeometry, pointsMaterial);
 				<DirectionalLight position={{ x: -3, y: 10, z: -10 }} intensity={0.2} />
 				<AmbientLight intensity={0.2} />
 
-					<Mesh
-						interactive
-						on:pointerenter={() => ($scale = 2)}
-						on:pointerleave={() => ($scale = 1)}
-						position={{ y: 0.5 }}
-						castShadow
-						geometry={new BoxBufferGeometry(1, 1, 1)}
-						material={new MeshStandardMaterial({ color: '#333333' })}
-					/>
-
-					<Object3DInstance {object} position={{ y: 1 }} />
+				<Object3DInstance {points} position={{ x: 0 }} />
 
 			</Canvas>
 			
