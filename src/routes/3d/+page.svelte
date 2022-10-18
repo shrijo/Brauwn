@@ -1,5 +1,6 @@
 <script>
   import {fly} from 'svelte/transition'
+	import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
 	import { CircleBufferGeometry, TorusKnotGeometry, Mesh, MeshStandardMaterial, Float32BufferAttribute, Vector3, BufferGeometry, PointsMaterial, DoubleSide, Object3D, Points } from 'three'
   import { DEG2RAD } from 'three/src/math/MathUtils'
   import {
