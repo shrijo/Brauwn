@@ -28,7 +28,6 @@
 	"dependencies": {
 		"@threlte/core": "^4.3.2",
 		"@threlte/extras": "^4.3.0",
-		"svelte-cubed": "^0.2.1",
 		"three": "^0.145.0"
 	}
 }

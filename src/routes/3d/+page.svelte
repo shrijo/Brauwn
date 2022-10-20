@@ -15,9 +15,13 @@
   } from '@threlte/core'
   import { spring } from 'svelte/motion'
 
-  const scale = spring(1)
-
- /* -- */
+const geometry = new BoxGeometry(1, 1, 1);
+const pointsMaterial = new PointsMaterial({
+  color: 0xff61d5,
+  size: 1
+});
+const points = new Points(geometry, pointsMaterial);
+ /* -- *
 const geometry = new BoxGeometry(1, 1, 1);
 const torusKnot = new Mesh(geometry);
 
@@ -71,6 +75,12 @@ let sideBar = false;
 				<AmbientLight intensity={0.2} />
 
 				<Object3DInstance {points} position={{ x: 0 }} />
+				<Mesh
+        position={{ y: 0.5 }}
+        castShadow
+        geometry={new BoxBufferGeometry(1, 1, 1)}
+        material={new MeshStandardMaterial({ color: '#333333' })}
+      	/>
 
 			</Canvas>
 			
